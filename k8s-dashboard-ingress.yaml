@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressksdashboard
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`k8s.vt01.namle.dev`) || Host(`k8s.vt07.namle.dev`)
+    kind: Rule
+    services:
+    - name: kubernetes-dashboard
+      namespace: kubernetes-dashboard
+      port: 80
